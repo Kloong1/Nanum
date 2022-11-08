@@ -1,5 +1,9 @@
 .DS_Store
+.idea/
 
 기획/.obsidian
 
+#bible-crawler
 bible-crawler/__pycache__/
+bible-crawler/db/
+
