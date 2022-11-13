@@ -3,14 +3,12 @@ package com.kloong.nanum.domain.bible;
 import lombok.Data;
 
 @Data
-public class BibleVerseIndex {
+public class BibleChapterIndex {
     private int bookId;
     private int chapter;
-    private int verse;
 
-    public BibleVerseIndex(int bookId, int chapter, int verse) {
+    public BibleChapterIndex(int bookId, int chapter) {
         this.bookId = bookId;
         this.chapter = chapter;
-        this.verse = verse;
     }
 }
