@@ -1,0 +1,30 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kloong.nanum.repository.bible.BibleMapper">
+
+    <select id="findBibleVerseByBibleVerseIndex" resultMap="bibleVerse">
+        SELECT verse_content, verse_book_id, verse_chapter_num, verse_num
+        FROM bible_verse
+        WHERE verse_book_id=#{bookId}
+                AND verse_chapter_num=#{chapter}
+                AND verse_num=#{verse}
+    </select>
+
+    <select id="findBibleVersesByBibleVerseIndexRange" resultMap="bibleVerse">
+        SELECT verse_content, verse_book_id, verse_chapter_num, verse_num, verse_seq
+        FROM bible_verse
+        WHERE verse_seq &gt;= (SELECT verse_seq FROM bible_verse WHERE verse_book_id=#{startIndex.bookId} AND verse_chapter_num=#{startIndex.chapter} AND verse_num=#{startIndex.verse})
+                AND verse_seq &lt;= (SELECT verse_seq FROM bible_verse WHERE verse_book_id=#{endIndex.bookId} AND verse_chapter_num=#{endIndex.chapter} AND verse_num=#{endIndex.verse})
+        ORDER BY verse_seq
+    </select>
+    
+    <resultMap id="bibleVerse" type="BibleVerse">
+        <result column="verse_content" property="content"/>
+        <association property="index" javaType="BibleVerseIndex">
+            <result column="verse_book_id" property="bookId"/>
+            <result column="verse_chapter_num" property="chapter"/>
+            <result column="verse_num" property="verse"/>
+        </association>
+    </resultMap>
+
+</mapper>
