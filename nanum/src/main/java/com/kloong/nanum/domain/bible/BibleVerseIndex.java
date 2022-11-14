@@ -8,6 +8,8 @@ public class BibleVerseIndex {
     private int chapter;
     private int verse;
 
+    public BibleVerseIndex() {}
+
     public BibleVerseIndex(int bookId, int chapter, int verse) {
         this.bookId = bookId;
         this.chapter = chapter;
