@@ -1,7 +1,6 @@
 package com.kloong.nanum.repository.bible;
 
-import com.kloong.nanum.domain.bible.BibleVerse;
-import com.kloong.nanum.domain.bible.BibleVerseIndex;
+import com.kloong.nanum.domain.bible.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,4 +23,24 @@ public class BibleRepository {
         return bibleMapper.findBibleVersesByBibleVerseIndexRange(startIndex, endIndex);
     }
 
+    public Optional<BibleChapter> findBibleChapterByBibleChapterIndex(BibleChapterIndex index) {
+        Optional<BibleChapterInfo> foundBibleChapterInfo = bibleMapper.findBibleChapterInfoByBibleChapterIndex(index);
+
+        if (foundBibleChapterInfo.isEmpty()) {
+            return Optional.empty();
+        }
+
+        List<BibleVerse> bibleVerses = bibleMapper.findBibleVersesByBibleChapterIndex(index);
+        BibleChapter bibleChapter = new BibleChapter(new BibleChapterIndex(index.getBookId(), index.getChapter()), bibleVerses);
+
+        return Optional.of(bibleChapter);
+    }
+
+    public Optional<BibleChapterInfo> findBibleChapterInfoByBibleChapterIndex(BibleChapterIndex index) {
+        return bibleMapper.findBibleChapterInfoByBibleChapterIndex(index);
+    }
+
+    public Optional<BibleBookInfo> findBibleBookInfoByBibleBookId(int bookId) {
+        return bibleMapper.findBibleBookInfoByBibleBookId(bookId);
+    }
 }
