@@ -18,6 +18,27 @@
         ORDER BY verse_seq
     </select>
     
+    <select id="findBibleChapterInfoByBibleChapterIndex" resultMap="bibleChapterInfo">
+        SELECT chapter_book_id, chapter_num, chapter_max_verse
+        FROM bible_chapter
+        WHERE chapter_book_id=#{bookId}
+                AND chapter_num=#{chapter}
+    </select>
+
+    <select id="findBibleVersesByBibleChapterIndex" resultMap="bibleVerse">
+        SELECT verse_content, verse_book_id, verse_chapter_num, verse_num, verse_seq
+        FROM bible_verse
+        WHERE verse_book_id=#{bookId}
+                AND verse_chapter_num=#{chapter}
+        ORDER BY verse_seq
+    </select>
+
+    <select id="findBibleBookInfoByBibleBookId" resultMap="bibleBookInfo">
+        SELECT book_id, book_max_chapter
+        FROM bible_book
+        WHERE book_id=#{bookId}
+    </select>
+
     <resultMap id="bibleVerse" type="BibleVerse">
         <result column="verse_content" property="content"/>
         <association property="index" javaType="BibleVerseIndex">
@@ -27,4 +48,15 @@
         </association>
     </resultMap>
 
+    <resultMap id="bibleChapterInfo" type="BibleChapterInfo">
+        <result column="chapter_book_id" property="bookId"/>
+        <result column="chapter_num" property="chapter"/>
+        <result column="chapter_max_verse" property="maxVerse"/>
+    </resultMap>
+
+    <resultMap id="bibleBookInfo" type="BibleBookInfo">
+        <id column="book_id" property="bookId"/>
+        <result column="book_max_chapter" property="maxChapter"/>
+    </resultMap>
+    
 </mapper>
