@@ -7,6 +7,8 @@ public class BibleChapterIndex {
     private int bookId;
     private int chapter;
 
+    public BibleChapterIndex() {}
+
     public BibleChapterIndex(int bookId, int chapter) {
         this.bookId = bookId;
         this.chapter = chapter;
