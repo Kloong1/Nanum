@@ -1,7 +1,6 @@
 package com.kloong.nanum.repository.bible;
 
-import com.kloong.nanum.domain.bible.BibleVerse;
-import com.kloong.nanum.domain.bible.BibleVerseIndex;
+import com.kloong.nanum.domain.bible.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,5 +46,45 @@ class BibleRepositoryTest {
 
         //then
         assertThat(result).containsExactly(bibleVerse1, bibleVerse2, bibleVerse3);
+    }
+
+    @Test
+    void findBibleChapterByBibleChapterIndex() {
+        //given
+        BibleChapterIndex index = new BibleChapterIndex(1, 1);
+
+        //when
+        Optional<BibleChapter> result = bibleRepository.findBibleChapterByBibleChapterIndex(index);
+
+        //then
+        BibleChapter chapter = result.orElseThrow();
+        assertThat(chapter.getIndex()).isEqualTo(index);
+        assertThat(chapter.getVerses().size()).isEqualTo(31);
+    }
+
+    @Test
+    void findBibleChapterInfoByBibleChapterIndex() {
+        //given
+        BibleChapterIndex bibleChapterIndex = new BibleChapterIndex(1, 1);
+
+        //when
+        Optional<BibleChapterInfo> foundBibleChapterInfo = bibleRepository.findBibleChapterInfoByBibleChapterIndex(bibleChapterIndex);
+
+        //then
+        BibleChapterInfo bibleChapterInfo = foundBibleChapterInfo.orElseThrow();
+        assertThat(bibleChapterInfo).isEqualTo(new BibleChapterInfo(1, 1, 31));
+    }
+
+    @Test
+    void findBibleBookInfoByBibleBookId() {
+        //given
+        int bookId = 1;
+
+        //when
+        Optional<BibleBookInfo> foundBibleBookInfo = bibleRepository.findBibleBookInfoByBibleBookId(bookId);
+
+        //then
+        BibleBookInfo bibleBookInfo = foundBibleBookInfo.orElseThrow();
+        assertThat(bibleBookInfo).isEqualTo(new BibleBookInfo(1, 50));
     }
 }
