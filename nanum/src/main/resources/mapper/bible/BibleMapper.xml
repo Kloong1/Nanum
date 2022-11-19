@@ -34,7 +34,7 @@
     </select>
 
     <select id="findBibleBookInfoByBibleBookId" resultMap="bibleBookInfo">
-        SELECT book_id, book_max_chapter
+        SELECT book_id, book_max_chapter, book_name
         FROM bible_book
         WHERE book_id=#{bookId}
     </select>
@@ -56,6 +56,7 @@
 
     <resultMap id="bibleBookInfo" type="BibleBookInfo">
         <id column="book_id" property="bookId"/>
+        <result column="book_name" property="bookName"/>
         <result column="book_max_chapter" property="maxChapter"/>
     </resultMap>
     
