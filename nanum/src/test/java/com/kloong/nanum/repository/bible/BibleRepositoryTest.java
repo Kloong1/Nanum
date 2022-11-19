@@ -81,7 +81,7 @@ class BibleRepositoryTest {
         int bookId = 1;
 
         //when
-        Optional<BibleBookInfo> foundBibleBookInfo = bibleRepository.findBibleBookInfoByBibleBookId(bookId);
+        Optional<BibleBookInfo> foundBibleBookInfo = bibleRepository.findBibleBookInfoByBookId(bookId);
 
         //then
         BibleBookInfo bibleBookInfo = foundBibleBookInfo.orElseThrow();

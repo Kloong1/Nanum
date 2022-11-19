@@ -40,7 +40,7 @@ public class BibleRepository {
         return bibleMapper.findBibleChapterInfoByBibleChapterIndex(index);
     }
 
-    public Optional<BibleBookInfo> findBibleBookInfoByBibleBookId(int bookId) {
-        return bibleMapper.findBibleBookInfoByBibleBookId(bookId);
+    public Optional<BibleBookInfo> findBibleBookInfoByBookId(int bookId) {
+        return bibleMapper.findBibleBookInfoByBookId(bookId);
     }
 }
