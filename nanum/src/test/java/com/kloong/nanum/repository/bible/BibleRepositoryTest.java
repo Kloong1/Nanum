@@ -85,6 +85,6 @@ class BibleRepositoryTest {
 
         //then
         BibleBookInfo bibleBookInfo = foundBibleBookInfo.orElseThrow();
-        assertThat(bibleBookInfo).isEqualTo(new BibleBookInfo(1, 50));
+        assertThat(bibleBookInfo).isEqualTo(new BibleBookInfo(1, "창세기", 50));
     }
 }
