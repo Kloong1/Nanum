@@ -18,4 +18,6 @@ public interface BibleMapper {
     Optional<BibleChapterInfo> findBibleChapterInfoByBibleChapterIndex(BibleChapterIndex index);
 
     Optional<BibleBookInfo> findBibleBookInfoByBookId(int bookId);
+
+    Optional<BibleBookInfo> findBibleBookInfoByBookName(String bookName);
 }

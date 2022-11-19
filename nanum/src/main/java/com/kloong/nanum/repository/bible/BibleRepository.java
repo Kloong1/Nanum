@@ -43,4 +43,8 @@ public class BibleRepository {
     public Optional<BibleBookInfo> findBibleBookInfoByBookId(int bookId) {
         return bibleMapper.findBibleBookInfoByBookId(bookId);
     }
+
+    public Optional<BibleBookInfo> findBibleBookInfoByBookName(String bookName) {
+        return bibleMapper.findBibleBookInfoByBookName(bookName);
+    }
 }
