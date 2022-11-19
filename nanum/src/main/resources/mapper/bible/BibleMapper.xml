@@ -33,7 +33,7 @@
         ORDER BY verse_seq
     </select>
 
-    <select id="findBibleBookInfoByBibleBookId" resultMap="bibleBookInfo">
+    <select id="findBibleBookInfoByBookId" resultMap="bibleBookInfo">
         SELECT book_id, book_max_chapter, book_name
         FROM bible_book
         WHERE book_id=#{bookId}
