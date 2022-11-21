@@ -33,6 +33,19 @@ class BibleRepositoryTest {
     }
 
     @Test
+    void findBibleVerseByBibleVerseIndex_Empty() {
+        //given
+        BibleVerseIndex bibleVerseIndex = new BibleVerseIndex(1, 1, 0);
+
+        //when
+        Optional<BibleVerse> result = bibleRepository.findBibleVerseByBibleVerseIndex(bibleVerseIndex);
+
+        //then
+        assertThat(result.isEmpty()).isTrue();
+    }
+
+
+    @Test
     void findBibleVersesByBibleVerseIndexRange() {
         //given
         BibleVerseIndex startIndex = new BibleVerseIndex(1, 1, 1);
